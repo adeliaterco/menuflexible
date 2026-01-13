@@ -15,6 +15,44 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
+    <!-- 🔑 PRESERVAR UTMs/IDs ANTES DE CUALQUIER SCRIPT -->
+    <script>
+      (function () {
+        try {
+          var p = new URLSearchParams(window.location.search);
+          var keys = [
+            "utm_source",
+            "utm_medium",
+            "utm_campaign",
+            "utm_term",
+            "utm_content",
+            "fbclid",
+            "gclid",
+            "ttclid",
+            "twclid",
+            "src",
+            "sck",
+            "xcod",
+            "bid"
+          ];
+
+          var out = new URLSearchParams();
+          for (var i = 0; i < keys.length; i++) {
+            var k = keys[i];
+            var v = p.get(k);
+            if (v) out.set(k, v);
+          }
+
+          // salva apenas se tiver algo
+          var hasAny = false;
+          out.forEach(function () { hasAny = true; });
+          if (hasAny) {
+            sessionStorage.setItem("__TRACK_PARAMS__", out.toString());
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2X3NZEGHDN"></script>
     <script>

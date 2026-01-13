@@ -1,10 +1,7 @@
 export const getUTMParams = (): string => {
   if (typeof window === "undefined") return "";
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const utmParams = new URLSearchParams();
-
-  const utmKeys = [
+  const keys = [
     "utm_source",
     "utm_medium",
     "utm_campaign",
@@ -12,37 +9,40 @@ export const getUTMParams = (): string => {
     "utm_content",
     "src",
     "sck",
-    "xcod",   // <- CRÍTICO (você usa no anúncio)
+    "xcod",
     "fbclid",
     "gclid",
     "ttclid",
     "twclid",
-    "bid",    // <- opcional (mas ajuda; aparece na Hotmart em alguns casos)
+    "bid",
   ];
 
-  utmKeys.forEach((key) => {
-    const value = urlParams.get(key);
-    if (value) utmParams.set(key, value);
+  const out = new URLSearchParams();
+
+  // 1) tenta pegar da URL atual
+  const urlParams = new URLSearchParams(window.location.search);
+  keys.forEach((k) => {
+    const v = urlParams.get(k);
+    if (v) out.set(k, v);
   });
 
-  return utmParams.toString();
+  // 2) fallback: pega do sessionStorage se a URL estiver limpa
+  if ([...out.keys()].length === 0) {
+    const stored = sessionStorage.getItem("__TRACK_PARAMS__");
+    if (stored) {
+      const storedParams = new URLSearchParams(stored);
+      keys.forEach((k) => {
+        const v = storedParams.get(k);
+        if (v) out.set(k, v);
+      });
+    }
+  }
+
+  return out.toString();
 };
 
 export const appendUTMToUrl = (baseUrl: string): string => {
   const utmString = getUTMParams();
   if (!utmString) return baseUrl;
 
-  // Preserva #hash (se existir)
-  const [urlWithoutHash, hash] = baseUrl.split("#");
-
-  // Mescla sem duplicar parâmetros (mais seguro do que concatenar string)
-  const url = new URL(urlWithoutHash, window.location.origin);
-  const incoming = new URLSearchParams(utmString);
-
-  incoming.forEach((value, key) => {
-    url.searchParams.set(key, value);
-  });
-
-  const finalUrl = url.toString();
-  return hash ? `${finalUrl}#${hash}` : finalUrl;
-};
+  const [urlWithoutHash, hash] =
