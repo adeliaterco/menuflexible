@@ -15,23 +15,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- 🔥 SOLUÇÃO 1: UTMify UTMs - BLOQUEANTE (sem async) -->
-    <script
-      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-      data-utmify-prevent-xcod-sck
-      data-utmify-prevent-subids
-    ></script>
-
-    <!-- 🔥 SOLUÇÃO 2: UTMify Pixel - BLOQUEANTE (sem async) -->
-    <script>
-      window.pixelId = "69665d767cd14fb6f9ad68ac";
-    </script>
-    <script src="https://cdn.utmify.com.br/scripts/pixel/pixel.js"></script>
-
-    <!-- Google Analytics 4 - pode manter async -->
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2X3NZEGHDN"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -39,11 +23,13 @@
       gtag('js', new Date());
       gtag('config', 'G-2X3NZEGHDN');
     </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
 
   <body>
     <div id="root"></div>
-    <!-- 🔥 SOLUÇÃO 3: React carrega POR ÚLTIMO -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
