@@ -1,7 +1,7 @@
 import { Check, Shield, Clock, Lock } from "lucide-react";
 import productMockup from "@/assets/product-mockup.jpg";
 import { trackPurchaseClick } from "@/hooks/useGA4Tracking";
-
+import { appendUTMToUrl } from "@/hooks/useUTMParams";
 const includedItems = [
   "Kit Menú Flexible +170 Opciones",
   "Opciones de Comidas por Kcal",
@@ -67,7 +67,8 @@ const PricingSection = () => {
             type="button"
             onClick={() => {
               trackPurchaseClick();
-              window.location.href = "https://pay.hotmart.com/N101152042X?off=4z8csbbu";
+              const hotmartUrl = appendUTMToUrl("https://pay.hotmart.com/N101152042X?off=4z8csbbu");
+              window.location.href = hotmartUrl;
             }}
             className="inline-block animate-pulse-soft rounded-full bg-secondary px-10 py-4 font-heading text-lg font-bold uppercase tracking-wide text-secondary-foreground shadow-button-cta transition-all hover:scale-105 hover:brightness-110"
           >
