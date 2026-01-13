@@ -6,7 +6,7 @@ export const getUTMParams = (): string => {
   const urlParams = new URLSearchParams(window.location.search);
   const utmParams = new URLSearchParams();
   
-  // Lista de parâmetros UTM padrão
+  // Lista de parâmetros UTM e tracking IDs
   const utmKeys = [
     "utm_source",
     "utm_medium", 
@@ -14,7 +14,11 @@ export const getUTMParams = (): string => {
     "utm_term",
     "utm_content",
     "src",
-    "sck"
+    "sck",
+    "fbclid",  // Facebook Click ID
+    "gclid",   // Google Click ID
+    "ttclid",  // TikTok Click ID
+    "twclid"   // Twitter Click ID
   ];
   
   utmKeys.forEach((key) => {
