@@ -3,11 +3,10 @@ import BenefitsSection from "@/components/BenefitsSection";
 import ForWhoSection from "@/components/ForWhoSection";
 import MealOptionsSection from "@/components/MealOptionsSection";
 import BonusSection from "@/components/BonusSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import FacebookComments from "@/components/FacebookComments";
 import SuperBonusSection from "@/components/SuperBonusSection";
 import PricingSection from "@/components/PricingSection";
 import GA4ScrollTracker from "@/components/GA4ScrollTracker";
-
 const Index = () => {
   return (
     <main className="min-h-screen overflow-x-hidden">
@@ -17,7 +16,7 @@ const Index = () => {
       <ForWhoSection />
       <MealOptionsSection />
       <BonusSection />
-      <TestimonialsSection />
+      <FacebookComments />
       <SuperBonusSection />
       <PricingSection />
       
