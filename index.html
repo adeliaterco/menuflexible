@@ -15,7 +15,14 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-    <!-- UTMify Pixel -->
+    <!-- ⚡ CORREÇÃO 1: UTMify UTMs carrega PRIMEIRO (síncrono) -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+    ></script>
+
+    <!-- ⚡ CORREÇÃO 2: UTMify Pixel carrega DEPOIS (assíncrono) -->
     <script>
       window.pixelId = "69665d767cd14fb6f9ad68ac";
       var a = document.createElement("script");
@@ -24,15 +31,6 @@
       a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
       document.head.appendChild(a);
     </script>
-
-    <!-- UTMify UTMs -->
-    <script
-      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-      data-utmify-prevent-xcod-sck
-      data-utmify-prevent-subids
-      async
-      defer
-    ></script>
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2X3NZEGHDN"></script>
