@@ -67,7 +67,7 @@ const PricingSection = () => {
             type="button"
             onClick={() => {
               trackPurchaseClick();
-              const hotmartUrl = appendUTMToUrl("https://pay.hotmart.com/N101152042X?off=4z8csbbu");
+              const hotmartUrl = appendUTMToUrl("https://pay.hotmart.com/N101152042X?off=4z8csbbu&checkoutMode=10");
               window.location.href = hotmartUrl;
             }}
             className="inline-block animate-pulse-soft rounded-full bg-secondary px-10 py-4 font-heading text-lg font-bold uppercase tracking-wide text-secondary-foreground shadow-button-cta transition-all hover:scale-105 hover:brightness-110"
