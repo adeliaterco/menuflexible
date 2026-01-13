@@ -43,7 +43,6 @@
             if (v) out.set(k, v);
           }
 
-          // salva apenas se tiver algo
           var hasAny = false;
           out.forEach(function () { hasAny = true; });
           if (hasAny) {
@@ -52,6 +51,17 @@
         } catch (e) {}
       })();
     </script>
+
+    <!-- ✅ UTMify: definir pixelId ANTES do pixel.js -->
+    <script>
+      window.pixelId = "69665d767cd14fb6f9ad68ac";
+    </script>
+
+    <!-- ✅ UTMify UTMs (primeiro) -->
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js"></script>
+
+    <!-- ✅ UTMify Pixel (depois) -->
+    <script async defer src="https://cdn.utmify.com.br/scripts/pixel/pixel.js"></script>
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2X3NZEGHDN"></script>
