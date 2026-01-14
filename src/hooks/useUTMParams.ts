@@ -1,3 +1,5 @@
+// src/hooks/useUTMParams.ts
+
 export const getUTMParams = (): string => {
   if (typeof window === "undefined") return "";
 
@@ -48,12 +50,12 @@ export const appendUTMToUrl = (baseUrl: string): string => {
   // preserva hash (#...) se existir
   const [urlWithoutHash, hash] = baseUrl.split("#");
 
-  // mescla params sem duplicar
+  // mescla params sem sobrescrever os que já existem na URL base
   const url = new URL(urlWithoutHash, window.location.origin);
   const incoming = new URLSearchParams(utmString);
 
   incoming.forEach((value, key) => {
-    url.searchParams.set(key, value);
+    if (!url.searchParams.has(key)) url.searchParams.set(key, value);
   });
 
   const finalUrl = url.toString();
