@@ -4,16 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menú Flexible - Dietas Fáciles y Saludables</title>
-    <meta name="description" content="Kit completo de menús flexibles organizados por calorías. Recetas saludables para adelgazar o ganar masa magra." />
+    <meta
+      name="description"
+      content="Kit completo de menús flexibles organizados por calorías. Recetas saludables para adelgazar o ganar masa magra."
+    />
     <meta name="author" content="Menú Flexible" />
 
     <meta property="og:title" content="Menú Flexible - Dietas Fáciles" />
-    <meta property="og:description" content="Kit completo de menús flexibles organizados por calorías. Recetas saludables." />
+    <meta
+      property="og:description"
+      content="Kit completo de menús flexibles organizados por calorías. Recetas saludables."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta
+      property="og:image"
+      content="https://lovable.dev/opengraph-image-p98pqg.png"
+    />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta
+      name="twitter:image"
+      content="https://lovable.dev/opengraph-image-p98pqg.png"
+    />
 
     <!-- 🔑 PRESERVAR UTMs/IDs ANTES DE CUALQUIER SCRIPT -->
     <script>
@@ -44,32 +56,40 @@
           }
 
           var hasAny = false;
-          out.forEach(function () { hasAny = true; });
+          out.forEach(function () {
+            hasAny = true;
+          });
+
           if (hasAny) {
             sessionStorage.setItem("__TRACK_PARAMS__", out.toString());
+            localStorage.setItem("__TRACK_PARAMS__", out.toString());
           }
         } catch (e) {}
       })();
     </script>
 
-    <!-- ✅ UTMify: definir pixelId ANTES do pixel.js -->
+    <!-- ✅ UTMfy (SNIPPET ORIGINAL) -->
     <script>
       window.pixelId = "6966a7ae970dc4e3ddd587fa";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
     </script>
 
-    <!-- ✅ UTMify UTMs (primeiro) -->
-    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js"></script>
-
-    <!-- ✅ UTMify Pixel (depois) -->
-    <script async defer src="https://cdn.utmify.com.br/scripts/pixel/pixel.js"></script>
-
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2X3NZEGHDN"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2X3NZEGHDN"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-2X3NZEGHDN');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-2X3NZEGHDN");
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
