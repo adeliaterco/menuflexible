@@ -82,7 +82,7 @@ const PricingSection = () => {
             <Shield className="h-6 w-6" />
             <div className="text-xs">
               <p className="font-bold">GARANTÍA</p>
-              <p>7 días de garantía sin riesgo</p>
+              <p>30 días de garantía sin riesgo</p>
             </div>
           </div>
           <div className="flex items-center gap-2 text-primary-foreground/80">
