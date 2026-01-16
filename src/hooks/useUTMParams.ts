@@ -8,48 +8,57 @@ const KEYS = [
   "utm_campaign",
   "utm_term",
   "utm_content",
+  "src",
+  "sck",
+  "xcod",
   "fbclid",
   "gclid",
   "ttclid",
   "twclid",
   "bid",
-  // não incluí src/sck/xcod aqui porque vamos GERAR se faltar
 ];
 
-export const getUTMParams = (): URLSearchParams => {
-  if (typeof window === "undefined") return new URLSearchParams();
+export const getUTMParams = (): string => {
+  if (typeof window === "undefined") return "";
+
+  const out = new URLSearchParams();
 
   // 1) URL atual
-  const current = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(window.location.search);
+  KEYS.forEach((k) => {
+    const v = urlParams.get(k);
+    if (v) out.set(k, v);
+  });
 
-  // 2) fallback storage
-  if ([...current.keys()].length === 0) {
+  // 2) fallback storage (local -> session)
+  if ([...out.keys()].length === 0) {
     const stored =
       localStorage.getItem(TRACK_KEY) || sessionStorage.getItem(TRACK_KEY);
-    if (stored) return new URLSearchParams(stored);
+
+    if (stored) {
+      const storedParams = new URLSearchParams(stored);
+      KEYS.forEach((k) => {
+        const v = storedParams.get(k);
+        if (v) out.set(k, v);
+      });
+    }
   }
 
-  return current;
+  return out.toString();
 };
 
 export const appendUTMToUrl = (baseUrl: string): string => {
   if (typeof window === "undefined") return baseUrl;
 
-  const current = getUTMParams();
+  const utmString = getUTMParams();
+  if (!utmString) return baseUrl;
 
   const url = new URL(baseUrl);
+  const incoming = new URLSearchParams(utmString);
 
-  // 1) Copia UTMs + click ids
-  KEYS.forEach((k) => {
-    const v = current.get(k);
-    if (v && !url.searchParams.has(k)) url.searchParams.set(k, v);
+  incoming.forEach((value, key) => {
+    if (!url.searchParams.has(key)) url.searchParams.set(key, value);
   });
-
-  // 2) GARANTE ORIGEM PARA HOTMART: xcod/src (curto)
-  const utmSource = current.get("utm_source") || "origem";
-
-  if (!url.searchParams.has("xcod")) url.searchParams.set("xcod", utmSource);
-  if (!url.searchParams.has("src")) url.searchParams.set("src", utmSource);
 
   return url.toString();
 };
