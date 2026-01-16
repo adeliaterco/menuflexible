@@ -23,17 +23,10 @@ const HOTMART_BASE_URL =
   "https://pay.hotmart.com/N101152042X?off=4z8csbbu&checkoutMode=10";
 
 const PricingSection = () => {
-  const handleCheckoutClick = () => {
-    trackPurchaseClick();
-    const hotmartUrl = appendUTMToUrl(HOTMART_BASE_URL);
-    window.location.assign(hotmartUrl);
-  };
+  const hotmartUrl = appendUTMToUrl(HOTMART_BASE_URL);
 
   return (
-    <section
-      id="pricing"
-      className="bg-gradient-offer py-16 text-primary-foreground"
-    >
+    <section id="pricing" className="bg-gradient-offer py-16 text-primary-foreground">
       <div className="container">
         <h2 className="text-center font-heading text-2xl font-bold md:text-3xl">
           ¡Obtén acceso a todo esto ahora mismo!
@@ -68,23 +61,21 @@ const PricingSection = () => {
             {includedItems.map((item, index) => (
               <li key={index} className="flex items-center gap-2">
                 <Check className="h-5 w-5 shrink-0 text-secondary" />
-                <span className="text-sm text-primary-foreground/90">
-                  {item}
-                </span>
+                <span className="text-sm text-primary-foreground/90">{item}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Link (teste mais confiável) */}
         <div className="mt-8 text-center">
-          <button
-            type="button"
-            onClick={handleCheckoutClick}
+          <a
+            href={hotmartUrl}
+            onClick={() => trackPurchaseClick()}
             className="inline-block animate-pulse-soft rounded-full bg-secondary px-10 py-4 font-heading text-lg font-bold uppercase tracking-wide text-secondary-foreground shadow-button-cta transition-all hover:scale-105 hover:brightness-110"
           >
             ¡Quiero el Kit Completo!
-          </button>
+          </a>
         </div>
 
         {/* Trust Badges */}
